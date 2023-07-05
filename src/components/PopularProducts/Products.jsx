@@ -4,6 +4,7 @@ import SingleProduct from "./SingleProduct";
 import styled from "styled-components";
 import { mobile } from "../../Responsive";
 import { publicRequest } from "../../RequestMethods";
+import LoaderComp from "../Loader";
 
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -36,7 +37,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const res = await publicRequest.get("/product?new=true");
-        setPopularProducts(res.data);
+        setPopularProducts(res.data.slice(0,4));
       } catch (err) {
         console.log("error in popular product", err);
       }
@@ -54,7 +55,7 @@ const Products = () => {
             return <SingleProduct data={data} key={index} />;
           })
         ) : (
-          <>loading</>
+          <LoaderComp/>
         )}
       </Container>
     </Wrapper>

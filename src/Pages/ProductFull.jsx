@@ -32,6 +32,7 @@ import {
   updateProductQuantity,
 } from "../ReduxStore/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import LoaderComp from "../components/Loader";
 const ProductFull = () => {
   const cart = useSelector((state) => state.cart);
 
@@ -159,7 +160,7 @@ const ProductFull = () => {
             </InfoContainer>
           </Wrapper>
         ) : (
-          <h1>please wait</h1>
+          <LoaderComp />
         )}
         <Newsletter />
         <Footer />

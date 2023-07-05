@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { Line } from "../components/Categories/Categories";
 import { mobile } from "../Responsive";
 import Navbar from "../components/Navbar/Navbar";
+import { useState } from "react";
+import { useEffect } from "react";
+import { publicRequest } from "../RequestMethods";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -14,7 +17,7 @@ const Container = styled.div`
     url(${(props) => props.bg});
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: -70px;
+  /* margin-top: -70px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,7 +67,46 @@ const Button = styled.button`
   font-size: 20px;
   margin: 10px;
 `;
+const initialState = {
+  fullname: "",
+  username: "",
+  email: "",
+  password: "",
+  mobile: "",
+};
 const Register = () => {
+  const [userData, setUserData] = useState(initialState);
+  const [click, setClick] = useState(false);
+  const [error, setError] = useState(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
+  useEffect(() => {
+    const register = async () => {
+      try {
+        const res = await publicRequest.post("auth/register", userData);
+        console.log(res.data);
+      } catch (error) {
+        setError(true);
+      }
+    };
+    if (
+      click &&
+      userData.fullname != "" &&
+      userData.email != "" &&
+      userData.mobile != "" &&
+      userData.password != "" &&
+      userData.username != ""
+    )
+      register();
+    else {
+      setError(true);
+    }
+  }, [click]);
   return (
     <>
       <Navbar />
@@ -76,19 +118,46 @@ const Register = () => {
         <Wrapper>
           <Title>Register</Title>
           <Line />
+          {error && click && (
+            <p style={{ color: "red" }}> Something went wrong !!</p>
+          )}
           <Form>
-            <Input placeholder="First Name" type="text" />
-            <Input placeholder="UserName" type="text" />
-            <Input placeholder="Email" type="email" />
-            <Input placeholder="Mobile no." type="number" />
-            <Input placeholder="Password" type="password" />
-            <Input placeholder="Confirm Password" type="password" />
+            <Input
+              placeholder="Full Name"
+              name="fullname"
+              type="text"
+              onChange={handleChange}
+            />
+            <Input
+              placeholder="UserName"
+              name="username"
+              type="text"
+              onChange={handleChange}
+            />
+            <Input
+              placeholder="Email"
+              name="email"
+              type="email"
+              onChange={handleChange}
+            />
+            <Input
+              placeholder="Mobile no."
+              name="mobile"
+              type="number"
+              onChange={handleChange}
+            />
+            <Input
+              placeholder="Password"
+              name="password"
+              type="password"
+              onChange={handleChange}
+            />
           </Form>
           <Agreement>
             {"By registering you accept all our terms and Conditions and".toUpperCase()}{" "}
             <b style={{ margin: "10px" }}>{"Privacy Policy".toUpperCase()}</b>
           </Agreement>
-          <Button>SIGN IN</Button>
+          <Button onClick={() => setClick(true)}>SIGN IN</Button>
         </Wrapper>
       </Container>
     </>

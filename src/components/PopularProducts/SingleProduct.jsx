@@ -52,7 +52,7 @@ const Icon = styled.div`
   }
 `;
 const Image = styled.img`
-  height: 90%;
+  height: 268px;
   width: 300px;
   object-fit: cover;
   z-index: 2;

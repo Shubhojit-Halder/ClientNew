@@ -4,6 +4,7 @@ import { PopularProducts } from "../PopularProducts/Data";
 import styled from "styled-components";
 import { mobile } from "../../Responsive";
 import axios from "axios";
+import LoaderComp from "../Loader";
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -65,9 +66,13 @@ const AllProducts = ({ category, filters, sort }) => {
   console.log(filteredProducts);
   return (
     <Container>
-      {filteredProducts.map((data, index) => {
-        return <SingleProduct data={data} key={index} />;
-      })}
+      {filteredProducts.length != 0 ? (
+        filteredProducts.map((data, index) => {
+          return <SingleProduct data={data} key={index} />;
+        })
+      ) : (
+        <LoaderComp />
+      )}
     </Container>
   );
 };

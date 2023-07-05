@@ -38,20 +38,20 @@ const Container = styled.div`
 const Wrapper = styled.div`
   position: fixed;
   padding: 10px 15px;
-  
+
   display: flex;
   width: 100%;
   justify-content: space-between;
   ${mobile({ padding: "10px 0px" })}
-  .mobile-only{
-      display: none;
-    }
-  @media(max-width:420px) {
+  .mobile-only {
+    display: none;
+  }
+  @media (max-width: 420px) {
     .menuitem {
       display: none;
       color: #fff;
     }
-    .mobile-only{
+    .mobile-only {
       display: flex;
     }
   }
@@ -103,7 +103,6 @@ const Right = styled.div`
   justify-content: center;
   margin-right: 20px;
   ${mobile({ flex: 1.5 })}/* justify-content: center; */
-
 `;
 const MobileNav = styled.div`
   background-color: #ffffff;
@@ -116,8 +115,7 @@ const MobileNav = styled.div`
   position: fixed;
   z-index: 4;
   margin-top: 50px;
-`
-;
+`;
 const Navbar = () => {
   const cartItems = useSelector((state) => state.cart);
   const quantity = useSelector((state) => state.cart.quantity);
@@ -148,7 +146,17 @@ const Navbar = () => {
       <Container>
         <Wrapper>
           <Center>
-            <Logo>HALDER'S</Logo>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+                color: "initial",
+                fontWeight: 500,
+              }}
+            >
+              {" "}
+              <Logo>HALDER'S</Logo>
+            </Link>
             <Link
               to="/products/man"
               style={{
@@ -193,12 +201,20 @@ const Navbar = () => {
                   height: "40px",
                   borderRadius: "50%",
                   backgroundColor: "#b0b0b063",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
                 {user.username.toUpperCase().slice(0, 1)}
               </MenuItem>
             ) : (
-              <MenuItem className="menuitem">Register</MenuItem>
+              <Link
+                to="/register"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                <MenuItem className="menuitem">Register</MenuItem>
+              </Link>
             )}
             {user ? (
               <MenuItem className="menuitem" onClick={handleLogout}>
