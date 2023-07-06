@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { mobile } from "../../Responsive";
 import axios from "axios";
 import LoaderComp from "../Loader";
+import { publicRequest } from "../../RequestMethods";
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -21,10 +22,10 @@ const AllProducts = ({ category, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
+        const res = await publicRequest.get(
           category
-            ? `http://localhost:5000/api/product?category=${category}`
-            : "http://localhost:5000/api/product"
+            ? `/product?category=${category}`
+            : "/product"
         );
         // console.log(res.data);
         setProducts(res.data);
