@@ -42,6 +42,7 @@ import {
   TopText,
   TopTexts,
   Wrapper,
+  SummaryWrapper,
 } from "./Styles/CartStyles";
 
 const Cart = () => {
@@ -164,41 +165,44 @@ const Cart = () => {
               />
             )}
           </Info>
-          <Summary>
-            <SummaryHeader>ORDER SUMMARY</SummaryHeader>
-            <SummaryItem>
-              <SummaryItemText fontWeight="600">Subtotal: </SummaryItemText>
-              <SummaryItemPrice>Rs. {cart.price}</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText fontWeight="600">
-                Estimated Shipping:
-              </SummaryItemText>
-              <SummaryItemPrice>Rs. 200</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText fontWeight="600">
-                Shipping Discount:
-              </SummaryItemText>
-              <SummaryItemPrice>Rs. 200</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText fontSize="28px" fontWeight="600">
-                Total
-              </SummaryItemText>
-              <SummaryItemPrice fontSize="28px">
-                Rs. {cart.price}
-              </SummaryItemPrice>
-            </SummaryItem>
-            <Button
-              bg="filled"
-              margin="20px 0px 0px 0px"
-              width="100%"
-              onClick={handlePaymentRequest}
-            >
-              CHECKOUT NOW
-            </Button>
-          </Summary>
+          <SummaryWrapper>
+            <Summary>
+              <SummaryHeader>ORDER SUMMARY</SummaryHeader>
+              <SummaryItem>
+                <SummaryItemText fontWeight="600">Subtotal: </SummaryItemText>
+                <SummaryItemPrice>Rs. {cart.price}</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText fontWeight="600">
+                  Estimated Shipping:
+                </SummaryItemText>
+                <SummaryItemPrice>Rs. 200</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText fontWeight="600">
+                  Shipping Discount:
+                </SummaryItemText>
+                <SummaryItemPrice>Rs. 200</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText fontSize="28px" fontWeight="600">
+                  Total
+                </SummaryItemText>
+                <SummaryItemPrice fontSize="28px">
+                  Rs. {cart.price}
+                </SummaryItemPrice>
+              </SummaryItem>
+              <Button
+                bg="filled"
+                margin="20px 0px 0px 0px"
+                width="100%"
+                onClick={handlePaymentRequest}
+                disabled={user.currentUser == null}
+              >
+                CHECKOUT NOW
+              </Button>
+            </Summary>
+          </SummaryWrapper>
         </Bottom>
       </Wrapper>
       <Footer />

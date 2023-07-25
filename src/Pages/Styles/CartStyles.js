@@ -120,12 +120,18 @@ export const ProductPrice = styled.div`
   font-weight: 500;
   margin-top: 10px;
 `;
-
+export const SummaryWrapper = styled.div`
+  ${mobile({ display: "flex", justifycontent: "center"})}
+`;
 export const Summary = styled.div`
   flex: 1;
   border: 0.2px solid #00000071;
   padding: 10px;
   height: 280px;
+  /* width: 320px; */
+  /* ${mobile({
+    margin: "10px",
+  })} */
 `;
 export const SummaryHeader = styled.h3`
   font-size: 28px;

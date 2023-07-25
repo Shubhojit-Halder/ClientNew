@@ -115,12 +115,15 @@ const MobileNav = styled.div`
   position: fixed;
   z-index: 4;
   margin-top: 50px;
+  box-shadow: 0px 5px 10px #5b5b5b46;
+  transition: all 1s ease-in-out;
 `;
 const Navbar = () => {
   const cartItems = useSelector((state) => state.cart);
   const quantity = useSelector((state) => state.cart.quantity);
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const handleLogout = async () => {
     try {
@@ -184,6 +187,18 @@ const Navbar = () => {
             <MenuItem style={{ marginLeft: "20px" }} className="menuitem">
               KIDS
             </MenuItem>
+            <Link
+              to="/orders"
+              style={{
+                textDecoration: "none",
+                color: "initial",
+                fontWeight: 500,
+              }}
+            >
+              <MenuItem style={{ marginLeft: "20px" }} className="menuitem">
+                ORDERS
+              </MenuItem>
+            </Link>
           </Center>
           <Right>
             <Left>
@@ -240,7 +255,6 @@ const Navbar = () => {
               <MenuItem
                 sx={{
                   color: "#000",
-                  // marginLeft: "-15px",
                   transition: "5s linear",
                 }}
                 onClick={() => setIsOpen(false)}
@@ -326,6 +340,50 @@ const Navbar = () => {
               KIDS
             </MenuItem>
           </Link>
+          <Link
+            to="/orders"
+            style={{
+              textDecoration: "none",
+              color: "#000",
+              fontWeight: 500,
+            }}
+          >
+            <MenuItem
+              style={{
+                marginLeft: "20px",
+                fontSize: "20px",
+                marginBottom: "20px",
+              }}
+              className="menuitem"
+            >
+              ORDERS
+            </MenuItem>
+          </Link>
+          {user ? (
+            <MenuItem
+              style={{
+                marginLeft: "20px",
+                fontSize: "20px",
+                marginBottom: "20px",
+              }}
+              className="menuitem"
+              onClick={handleLogout}
+            >
+              LOGOUT
+            </MenuItem>
+          ) : (
+            <MenuItem
+              style={{
+                marginLeft: "20px",
+                fontSize: "20px",
+                marginBottom: "20px",
+              }}
+              className="menuitem"
+              onClick={() => Navigate("/login")}
+            >
+              LOGIN
+            </MenuItem>
+          )}
         </MobileNav>
       )}
     </>

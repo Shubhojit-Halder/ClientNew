@@ -29,7 +29,7 @@ const Arrow = styled.div`
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
-  ${mobile({ bottom: "200px" })}
+  ${mobile({ top: "0px" })}
 `;
 
 const Wrapper = styled.div`

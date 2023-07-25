@@ -15,6 +15,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import axios from "axios";
+import Orders from "./Pages/Orders";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductFull />} />
         <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/orders" element={<Orders />} />
       </Routes>
     </Router>
   );
