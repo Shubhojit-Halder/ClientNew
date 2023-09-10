@@ -40,7 +40,7 @@ const Categories = () => {
       <Line/>
       <Container>
         {CategoriesData.map((data, index) => {
-          return <CategoriesItem data={data}/>;
+          return <CategoriesItem data={data} key={index}/>;
         })}
       </Container>
       </Wrapper>

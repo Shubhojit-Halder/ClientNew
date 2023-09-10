@@ -105,7 +105,7 @@ const Slider = () => {
           return (
             <Slide bg="#fdaf12" key={index}>
               <ImageContainer>
-                <Image src={data.img} />
+                <Image src={data.img} alt="Product Img"/>
               </ImageContainer>
               <InfoContainer>
                 <Title>{data.Title}</Title>

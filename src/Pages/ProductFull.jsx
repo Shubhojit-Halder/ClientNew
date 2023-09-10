@@ -91,7 +91,7 @@ const ProductFull = () => {
         {isLoaded ? (
           <Wrapper>
             <ImageContainer>
-              <Image src={product.img} />
+              <Image src={product.img} alt="Product Img"/>
             </ImageContainer>
             <InfoContainer>
               <Header>{product.brand}</Header>

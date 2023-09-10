@@ -108,7 +108,7 @@ const SingleProduct = (props) => {
   
   return (
     <Container>
-      <Image src={props.data.img} />
+      <Image src={props.data.img}alt="Product Img" />
       <Details>
         <h4 className="brand">{props.data.brand}</h4>
         <p className="name">{props.data.title}</p>

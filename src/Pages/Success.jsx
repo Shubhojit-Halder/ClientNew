@@ -30,7 +30,7 @@ const Success = () => {
         <img
           style={{ height: "400px", width: "400px", objectFit: "contain" }}
           src="https://firebasestorage.googleapis.com/v0/b/ecommerce-53afd.appspot.com/o/orderSuccess.png?alt=media&token=d06ec779-6fb0-42ed-8ba1-592fd201acfe"
-          alt=""
+          alt="Product Img"
         />
         <Button variant="contained" sx={{bgcolor:"teal",':hover':{bgcolor:"teal"}}}>Go To Orders</Button>
       </div>

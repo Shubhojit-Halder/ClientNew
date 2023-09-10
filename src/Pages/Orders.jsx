@@ -29,7 +29,7 @@ const Orders = () => {
                 return (
                   <Product key={product._id + index}>
                     <ProductDetails>
-                      <Image src={product.img} />
+                      <Image src={product.img} alt="Product Img"/>
                       <Details>
                         <ProductBrand>{product.brand}</ProductBrand>
                         <ProductName>
