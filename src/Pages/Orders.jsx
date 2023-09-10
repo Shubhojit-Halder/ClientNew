@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Announcement from "../components/Announcement";
-import { Bottom, Button, Info, Product, Title, Top, Wrapper } from "./Styles/CartStyles";
+// import { Bottom, Button, Info, Product, Title, Top, Wrapper } from "./Styles/CartStyles";
 import { useNavigate } from "react-router-dom";
+import { Button, Info, Product, ProductDetails, Title, Top, Wrapper } from "./Styles/CartStyles";
 
 const Orders = () => {
     const Navigate = useNavigate();
