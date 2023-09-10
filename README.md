@@ -1,3 +1,2 @@
 # ClientNew
-This is the customer side frontend of a ecommerce website. I've used React,Node,Express and MongoDB as the techstack for this website
-run: npm run dev
+This is the customer-facing frontend of an e-commerce website. The website is built using React, Node, Express, and MongoDB. To run the website, use "npm run dev".
