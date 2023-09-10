@@ -66,6 +66,7 @@ const Button = styled.button`
   width: 90%;
   font-size: 20px;
   margin: 10px;
+  cursor: pointer;
 `;
 const initialState = {
   fullname: "",
@@ -76,8 +77,9 @@ const initialState = {
 };
 const Register = () => {
   const [userData, setUserData] = useState(initialState);
+  const [message, setMessage] = useState("");
   const [click, setClick] = useState(false);
-  const [error, setError] = useState(false);
+  const [errors, setError] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({
@@ -85,28 +87,37 @@ const Register = () => {
       [name]: value,
     });
   };
-  useEffect(() => {
-    const register = async () => {
-      try {
-        const res = await publicRequest.post("auth/register", userData);
-        console.log(res.data);
-      } catch (error) {
-        setError(true);
-      }
-    };
+  // useEffect(() => {
+  const register = async () => {
+    console.log("hello");
     if (
-      click &&
       userData.fullname != "" &&
       userData.email != "" &&
       userData.mobile != "" &&
       userData.password != "" &&
       userData.username != ""
-    )
-      register();
-    else {
-      setError(true);
-    }
-  }, [click]);
+    ) {
+      try {
+        console.log("in function");
+        const res = await publicRequest.post("auth/register", userData);
+        console.log(res.data);
+        setMessage("Regiatration Successful, Please Login!");
+        setError(false);
+        setClick(true);
+      } catch (error) {
+        console.log(error);
+        setMessage("Something went wrong!");
+        setError(true);
+      }
+    } else setMessage("Please fill all the details!");
+  };
+
+  // register();
+  // else {
+  //   setError(true);
+  //   console.log(errors);
+  // }
+  // }, [click]);
   return (
     <>
       <Navbar />
@@ -118,8 +129,11 @@ const Register = () => {
         <Wrapper>
           <Title>Register</Title>
           <Line />
-          {error && click && (
-            <p style={{ color: "red" }}> Something went wrong !!</p>
+          {errors && click && (
+            <p style={{ color: "red" }}>{message}</p>
+          )}
+          {!errors && click && (
+            <p style={{ color: "green" }}>{message}</p>
           )}
           <Form>
             <Input
@@ -157,7 +171,7 @@ const Register = () => {
             {"By registering you accept all our terms and Conditions and".toUpperCase()}{" "}
             <b style={{ margin: "10px" }}>{"Privacy Policy".toUpperCase()}</b>
           </Agreement>
-          <Button onClick={() => setClick(true)}>SIGN IN</Button>
+          <Button onClick={register}>SIGN IN</Button>
         </Wrapper>
       </Container>
     </>
