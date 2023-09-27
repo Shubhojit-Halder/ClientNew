@@ -7,6 +7,8 @@ import Navbar from "../components/Navbar/Navbar";
 import { useState } from "react";
 import { useEffect } from "react";
 import { publicRequest } from "../RequestMethods";
+import { loginFailed } from "../ReduxStore/userSlice";
+import { useDispatch } from "react-redux";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -80,6 +82,7 @@ const Register = () => {
   const [message, setMessage] = useState("");
   const [click, setClick] = useState(false);
   const [errors, setError] = useState(false);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({
@@ -89,6 +92,7 @@ const Register = () => {
   };
   // useEffect(() => {
   const register = async () => {
+ 
     console.log("hello");
     if (
       userData.fullname != "" &&
@@ -98,6 +102,7 @@ const Register = () => {
       userData.username != ""
     ) {
       try {
+
         console.log("in function");
         const res = await publicRequest.post("auth/register", userData);
         console.log(res.data);

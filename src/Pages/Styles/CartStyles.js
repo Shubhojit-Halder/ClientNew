@@ -25,6 +25,7 @@ export const Button = styled.button`
   border: ${(props) => (props.bg === "filled" ? "none" : "1.5px solid black")};
   margin: ${(props) => props.margin};
   width: ${(props) => props.width};
+  cursor: pointer;
 `;
 export const TopTexts = styled.div``;
 export const TopText = styled.span`

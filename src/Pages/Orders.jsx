@@ -1,13 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Announcement from "../components/Announcement";
 // import { Bottom, Button, Info, Product, Title, Top, Wrapper } from "./Styles/CartStyles";
 import { useNavigate } from "react-router-dom";
-import { Button, Info, Product, ProductDetails, Title, Top, Wrapper } from "./Styles/CartStyles";
+import {
+  Bottom,
+  Button,
+  Info,
+  Product,
+  ProductDetails,
+  Title,
+  Top,
+  Wrapper,
+} from "./Styles/CartStyles";
+import { publicRequest } from "../RequestMethods";
+import { useSelector } from "react-redux";
 
 const Orders = () => {
-    const Navigate = useNavigate();
-    const[orderData,setOrderData]=useState([]);
+  const { isFetching, isError, currentUser } = useSelector(
+    (state) => state.user
+  );
+  const Navigate = useNavigate();
+  const [orderData, setOrderData] = useState([]);
+  const loadOrderData = async () => {
+    if (currentUser != null) {
+      try {
+        const res = await publicRequest.post(`/order/find/${currentUser._id}`,);
+        
+      } catch (error) {}
+    }
+  };
+  useEffect(() => {}, []);
   return (
     <>
       <Announcement />
@@ -15,11 +38,13 @@ const Orders = () => {
       <Wrapper>
         <Title>Your Orders</Title>
         <Top>
-          <Button bg="transparent" onClick={()=>Navigate("/")}>CONTINUE SHOPPING</Button>
+          <Button bg="transparent" onClick={() => Navigate("/")}>
+            CONTINUE SHOPPING
+          </Button>
           {/* <TopTexts> */}
-            {/* <TopText>Shopping Bag(2)</TopText>
+          {/* <TopText>Shopping Bag(2)</TopText>
             <TopText>Wishlist(0)</TopText> */}
-            {/* <TopText></TopText> */}
+          {/* <TopText></TopText> */}
           {/* </TopTexts> */}
           {/* <Button bg="filled">CHECKOUT NOW</Button> */}
         </Top>
@@ -30,7 +55,7 @@ const Orders = () => {
                 return (
                   <Product key={product._id + index}>
                     <ProductDetails>
-                      <Image src={product.img} alt="Product Img"/>
+                      <Image src={product.img} alt="Product Img" />
                       <Details>
                         <ProductBrand>{product.brand}</ProductBrand>
                         <ProductName>
